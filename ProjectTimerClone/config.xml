@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<config>
+	<resources>
+		<resource name="PrototypoAlpha" path="PrototypoAlpha.dll">
+			<resourceMap>
+				<!-- Menu item icon and string resource -->
+				
+				<resEntry  id="138366b0-ce97-4d45-8777-428ba7eda803" string="10223" icon="105"/>
+				<resEntry  id="2366ceae-57f0-492f-9600-b9ae86929d1c" string="10224" icon="106"/>
+				<resEntry  id="29e48006-a9a9-4b16-a1e1-890d4f4955b7" string="10225" icon="104"/>
+			</resourceMap>
+		</resource>
+	</resources>
+</config>
