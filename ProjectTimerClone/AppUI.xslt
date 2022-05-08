@@ -47,8 +47,9 @@ This file defines new UI elements that all workspaces will contain
                 enable="true"/>
 <!--DropdownButton-->
 		<itemData guid='7e6b5490-14f6-475e-8dce-49d0176acdeb' type='dropDownDlgBtn' arrowStyle='down' 
-				  caption='test' 
-				  toolTip='teste' dropDownRef='d74ef405-5b50-46ab-80d4-a655e22ad80d' 
+				  caption='*Bind(DataSource=ProjectTimerCloneDS;Path=FormatedTime)' 
+				  toolTip='*Bind(DataSource=ProjectTimerCloneDS;Path=FormatedTime)' 
+				  dropDownRef='d74ef405-5b50-46ab-80d4-a655e22ad80d' 
 				  length='100' enable='true'/>
 
 		

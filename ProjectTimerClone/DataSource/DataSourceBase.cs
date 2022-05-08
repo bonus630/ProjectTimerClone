@@ -12,8 +12,6 @@ namespace ProjectTimerClone.DataSource
     [ClassInterface(ClassInterfaceType.AutoDual)]
     public class DataSourceBase : INotifyPropertyChanged
     {
-
-
         protected DataSourceProxy m_AppProxy;
 
         public DataSourceBase(DataSourceProxy proxy)
@@ -21,9 +19,9 @@ namespace ProjectTimerClone.DataSource
             this.m_AppProxy = proxy;
         }
 
+    
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NotifyPropertyChanged(string propertyName = "")
+        protected  void OnPropertyChanged(string propertyName = "")
         {
             try
             {

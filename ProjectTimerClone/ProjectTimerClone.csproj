@@ -212,6 +212,9 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NotifyPropertyChangedBase.cs" />
+    <Compile Include="Job.cs" />
+    <Compile Include="Jobs.cs" />
     <Page Include="ControlUI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -284,6 +287,9 @@
     </Content>
     <Content Include="config.xml" />
     <Content Include="resources.rct" />
+    <None Include="Resources\925.png" />
+    <None Include="Resources\3007.png" />
+    <None Include="Resources\575.png" />
     <Content Include="UserUI.xslt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

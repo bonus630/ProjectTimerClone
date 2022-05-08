@@ -21,6 +21,7 @@ namespace ProjectTimerClone
     {
         private corel.Application corelApp;
         private Styles.StylesController stylesController;
+        private Jobs Jobs;
         public PopUp(object app)
         {
             InitializeComponent();
@@ -28,6 +29,10 @@ namespace ProjectTimerClone
             {
                 this.corelApp = app as corel.Application;
                 stylesController = new Styles.StylesController(this.Resources, this.corelApp);
+                var dsp = corelApp.FrameWork.Application.DataContext.GetDataSource("ProjectTimerCloneDS");
+                object o = dsp.GetProperty("FormatedTime");
+                
+                this.DataContext = this.Jobs;
             }
             catch
             {
@@ -39,6 +44,11 @@ namespace ProjectTimerClone
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             stylesController.LoadThemeFromPreference();
+        }
+
+        private void btn_newJob_Click(object sender, RoutedEventArgs e)
+        {
+            Jobs.CreateJob(true);
         }
     }
 }
