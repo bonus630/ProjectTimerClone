@@ -46,18 +46,18 @@ This file defines new UI elements that all workspaces will contain
                 hostedType="Addons\ProjectTimerClone\ProjectTimerClone.dll,ProjectTimerClone.ControlUI"
                 enable="true"/>
 <!--DropdownButton-->
-		<itemData guid='7e6b5490-14f6-475e-8dce-49d0176acdeb' type='dropDownDlgBtn' arrowStyle='down' 
+		<!--<itemData guid='7e6b5490-14f6-475e-8dce-49d0176acdeb' type='dropDownDlgBtn' arrowStyle='down' 
 				  caption='*Bind(DataSource=ProjectTimerCloneDS;Path=FormatedTime)' 
 				  toolTip='*Bind(DataSource=ProjectTimerCloneDS;Path=FormatedTime)' 
 				  dropDownRef='d74ef405-5b50-46ab-80d4-a655e22ad80d' 
-				  length='100' enable='true'/>
+				  length='100' enable='true'/>-->
 
 		
 <!--PopUp-->
-        <itemData guid="d74ef405-5b50-46ab-80d4-a655e22ad80d"
+        <!--<itemData guid="d74ef405-5b50-46ab-80d4-a655e22ad80d"
                 type="wpfhost"
                 hostedType="Addons\ProjectTimerClone\ProjectTimerClone.dll,ProjectTimerClone.PopUp"
-                enable="true"/>
+                enable="true"/>-->
     </xsl:copy>
   </xsl:template>
 
@@ -73,13 +73,13 @@ This file defines new UI elements that all workspaces will contain
                       type="toolbar">
         <toolbar>
           <item  guidRef="48fcfd9d-b0bf-456d-8e40-aaa38eb8c8b0" dock="top"/>
-			<item  guidRef="7e6b5490-14f6-475e-8dce-49d0176acdeb" dock="top"/>
+			<!--<item  guidRef="7e6b5490-14f6-475e-8dce-49d0176acdeb" dock="top"/>-->
         </toolbar>
       </commandBarData>
     </xsl:copy>
   </xsl:template>
 
-  <xsl:template match="uiConfig/dialogs">
+  <!--<xsl:template match="uiConfig/dialogs">
     <xsl:copy>
       <xsl:apply-templates select="node()|@*"/>
 
@@ -92,7 +92,7 @@ This file defines new UI elements that all workspaces will contain
         </dialog>
       
     </xsl:copy>
-  </xsl:template>
+  </xsl:template>-->
   <xsl:template match="@*|node()">
     <xsl:copy>
       <xsl:apply-templates select="@*|node()"/>

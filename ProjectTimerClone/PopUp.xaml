@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ProjectTimerClone"
+             xmlns:local="clr-namespace:ProjectTimerClone" d:DataContext="{d:DesignInstance Type=local:Jobs}"
              mc:Ignorable="d" 
-             MinWidth="600" MinHeight="550">
+             MinWidth="600" MinHeight="550" Background="White">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,7 +18,7 @@
     </UserControl.Resources>
     <Grid Margin="4">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
+            <RowDefinition Height="26" />
             <RowDefinition Height="66" />
             <RowDefinition Height="*" />
             <RowDefinition Height="46" />
@@ -28,9 +28,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="4"/>
-                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="26"/>
                 <ColumnDefinition Width="4"/>
-                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="26"/>
             </Grid.ColumnDefinitions>
             <Separator Grid.Column="1" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
             <Label Content="Project Timer" Grid.Column="0" />
@@ -59,11 +59,11 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="80"/>
             </Grid.ColumnDefinitions>
-            <CheckBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Stretch" /><!--Checked="{Binding CurrentJob.Running}"-->
+            <CheckBox IsChecked="{Binding CurrentJob.Running}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Stretch" /><!--Checked="{Binding CurrentJob.Running}"-->
             <Label Content="Task" Grid.Column="0" Grid.Row="1" />
             <Separator Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
-            <Label Content="{Binding CurrentJob.Name,FallbackValue=Name}" Grid.Column="2" Grid.Row="0" FontSize="14"/>
-            <Label Content="" Grid.Column="2" Grid.Row="1" FontSize="14"/><!--{Binding CurrentJob.FormatedTime,FallbackValue=0:00:00}-->
+            <Label Content="{Binding CurrentJob.Name,FallbackValue=Name}" Grid.Column="2" Grid.Row="0" FontSize="14" FontWeight="Bold"/>
+            <Label Content="{Binding CurrentJob.FormatedTime}" Grid.Column="2" Grid.Row="1" FontSize="14" FontWeight="Bold"/><!--{Binding CurrentJob.FormatedTime,FallbackValue=0:00:00}-->
             <Button Content="Edit" Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" BorderThickness="0"/>
             <Button Content="New" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" BorderThickness="0" x:Name="btn_newJob" Click="btn_newJob_Click"/>
         </Grid>
@@ -85,8 +85,16 @@
             <Label Grid.Row="0" Grid.Column="1" Content="Registred Time" VerticalAlignment="Center"/>
             <Label Grid.Row="0" Grid.Column="2" Content="Dates" VerticalAlignment="Center"/>
             <Separator VerticalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="4"/>
-            <DataGrid Grid.Row="2"  Grid.ColumnSpan="4" ItemsSource="{Binding JobList}">
-                
+            <DataGrid Grid.Row="2"  Grid.ColumnSpan="4" ItemsSource="{Binding JobList}" HeadersVisibility="None" AutoGenerateColumns="False" GridLinesVisibility="None">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid},Path=ColumnDefinitions[0].ActualWidth}" Header="Name" Binding="{Binding Name}" />
+                    <DataGridTextColumn Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid},Path=ColumnDefinitions[1].ActualWidth}" Header="Time" Binding="{Binding FormatedTime}" />
+                    <DataGridTextColumn Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid},Path=ColumnDefinitions[2].ActualWidth}" Header="Time" Binding="{Binding StartDateTime}" />
+                    <DataGridTextColumn Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Grid},Path=ColumnDefinitions[3].ActualWidth}" Header="Time" Binding="{Binding EndDateTime}" />
+                </DataGrid.Columns>
+                <!--<DataGrid.RowDetailsTemplate>
+                    <Label Content="{Binding}"
+                </DataGrid.RowDetailsTemplate>-->
             </DataGrid>
             <Separator VerticalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="4"/>
             <Button Grid.Row="4" VerticalAlignment="Center" HorizontalContentAlignment="Left" Height="40" >
@@ -98,7 +106,17 @@
                 </StackPanel>
 
             </Button>
+            <StackPanel Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Height="40" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <Button Content="Active" Width="100" Margin="4"/>
+                <Separator Margin="4"/>
+                <Button Content="▲" Margin="4" Width="36"/>
+                <Separator Margin="4"/>
+                <Button Content="▼" Margin="4" Width="36"/>
+            </StackPanel>
         </Grid>
-        <Label Content="Time" Grid.Row="3"/>
+        <StackPanel Orientation="Horizontal"  Grid.Row="3">
+            <Label Content="Time"/>
+            <Label Content="{Binding TotalTime}" />
+        </StackPanel>
     </Grid>
 </UserControl>

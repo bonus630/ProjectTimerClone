@@ -28,6 +28,8 @@ namespace ProjectTimerClone
         public bool IsSelected { get { return isSelected; } set { isSelected = value;OnPropertyChanged("IsSelected"); } }
         public bool Running { get { return running; } set { running = value;OnPropertyChanged("Running"); } }
 
+        public event Action<TimeSpan> EllapseTimeEvent;
+        public TimeSpan EllapseTime { get; private set; }
         public Job(string name)
         {
             Name = name;
@@ -57,6 +59,8 @@ namespace ProjectTimerClone
             end = DateTime.Now;
             counter = 0;
             Running = false;
+            this.StartDateTime = start.ToString("G");
+            this.EndDateTime = end.ToString("G");
         }
         public void Pause()
 
@@ -72,10 +76,18 @@ namespace ProjectTimerClone
             while(running)
             {
                 counter++;
-                FormatedTime = (start.AddSeconds(counter)).ToLongTimeString();
+                TimeSpan time = (start.AddSeconds(counter)) - start;
+                FormatedTime = time.ToString("T");
+                EllapseTime = time;
+                if (EllapseTimeEvent != null)
+                    EllapseTimeEvent(time);
                 Thread.Sleep(1000);
             }
         }
-     
+        public override string ToString()
+        {
+            return String.Format("{0} ({1})",this.name,this.end - this.start);
+        }
+
     }
 }

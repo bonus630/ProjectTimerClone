@@ -19,26 +19,31 @@ namespace ProjectTimerClone
     /// </summary>
     public partial class PopUp : UserControl
     {
-        private corel.Application corelApp;
+        public corel.Application corelApp { get; set; }
+        public Jobs Jobs { get; set; } 
         private Styles.StylesController stylesController;
-        private Jobs Jobs;
-        public PopUp(object app)
+       
+        public PopUp()
         {
             InitializeComponent();
+       
+         
+        }
+        public void Start()
+        {
             try
             {
-                this.corelApp = app as corel.Application;
+
                 stylesController = new Styles.StylesController(this.Resources, this.corelApp);
-                var dsp = corelApp.FrameWork.Application.DataContext.GetDataSource("ProjectTimerCloneDS");
-                object o = dsp.GetProperty("FormatedTime");
-                
+               // var dsp = corelApp.FrameWork.Application.DataContext.GetDataSource("ProjectTimerCloneDS");
+               // object o = dsp.GetProperty("FormatedTime");
+
                 this.DataContext = this.Jobs;
             }
             catch
             {
                 global::System.Windows.MessageBox.Show("VGCore Erro");
             }
-         
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

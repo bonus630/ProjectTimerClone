@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ProjectTimerClone"
+             xmlns:local="clr-namespace:ProjectTimerClone" d:DataContext="{d:DesignInstance Type=local:Jobs}"
              mc:Ignorable="d" 
-             Height="24" Width="30" Loaded="UserControl_Loaded">
+             Height="26"  Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,9 +15,20 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid>
-        <CheckBox x:Name="ck_startTimer"/>
-      
-    </Grid>
+    <StackPanel Orientation="Horizontal">
+        <CheckBox x:Name="ck_startTimer" HorizontalAlignment="Center"/>
+        <Button x:Name="btn_command"   Width="86"  Padding="0" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Margin="0">
+                <Label Content="{Binding CurrentJob.Name}" />
+                <Label Content="{Binding CurrentJob.FormatedTime,FallbackValue=(00:00)}" />
+            </StackPanel>
+        </Button>
+
+        <Popup IsOpen="{Binding PopupOpened}" Placement="Bottom" AllowsTransparency="True">
+            <Grid Background="White">
+                <local:PopUp x:Name="main_popup"/>
+            </Grid>
+        </Popup>
+    </StackPanel>
 
 </UserControl>

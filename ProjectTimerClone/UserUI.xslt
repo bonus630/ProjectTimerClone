@@ -55,7 +55,7 @@
     </xsl:copy>
   </xsl:template>
  
-    <xsl:template match="uiConfig/dialogs">
+    <!--<xsl:template match="uiConfig/dialogs">
     <xsl:copy>
       <xsl:apply-templates select="node()|@*"/>
 
@@ -72,6 +72,6 @@
         <item guidRef="79c72097-2da1-4fbf-8436-f89abb1478b6" dock="top"/>
       </xsl:if>
     </xsl:copy>
-  </xsl:template>
+  </xsl:template>-->
 
 </xsl:stylesheet>
